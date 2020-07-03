@@ -50,7 +50,7 @@ void ShowListData(LinkedList *list)
 }
 void FreeTheList(LinkedList *Head)
 {
-    int count=1;
+    int count=0;
     if (Head==NULL)
     {
         cout<<"the list is empty\n";
