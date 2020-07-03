@@ -7,7 +7,7 @@ typedef struct LinkedList
     LinkedList *next;
 
 }LinkedList;
-
+LinkedList* ReverseList(LinkedList *start);
 LinkedList* CreateList(string & input);
 LinkedList* CreateList();
 void ShowListData(LinkedList *);

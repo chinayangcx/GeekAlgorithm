@@ -85,17 +85,18 @@ bool IsPailnd(LinkedList *Head)
     //     tempSlow->next=tempSlow;
     //     tempSlow=P2;
     // }
-    LinkedList *reseveTempMid=CurrentSlow,*reseTempEnd=CurrentFast;
+    //LinkedList *reseveTempMid=CurrentSlow,*reseTempEnd=CurrentFast;
     LinkedList *temp;
-    LinkedList *P1=CurrentSlow,*P2;
+    //LinkedList *P1=CurrentSlow,*P2;
     if (odd_even==0)
     {
         //tempSlow=tempSlow->next;
-
-        P1=P1->next;
+        //P1=P1->next;
+        CurrentSlow=CurrentSlow->next;
     }
-    P2=P1->next;// 0.得到P2
-    if (P2==NULL)
+    LinkedList *P1=CurrentSlow,*P2;
+    //TODO: 要加入判断2 个字符
+    if (P1->next==NULL)
     {
         cout<<" the string is 2 char\n";
         if ((Head->data)==(Head->next->data))
@@ -107,18 +108,23 @@ bool IsPailnd(LinkedList *Head)
         return false;
     }
     
-    P1->next=NULL;  //将第一个置为NULL
-    
-    while (P2->next!=NULL)
+    P2=ReverseList(CurrentSlow);
+    //P2=P1->next;// 0.得到P2
+  /*  if (P2==NULL)
     {
-        temp=P2->next;//0.保存P2所指向下一个节点
-        P2->next=P1;//1.反向 
-        P1=P2;//2. 将P1变成下一个 新P1
-        P2=temp;//2. 将一开始保存的值给P2成为新P2
-    }
-    //此时还要处理
-    P2->next=P1;
-    //P2为最后一个节点
+        cout<<" the string is 2 char\n";
+        if ((Head->data)==(Head->next->data))
+        {
+            cout<<" the string is huiwen\n";
+            return true;
+        }
+        cout<<" the string is not huiwen\n";
+        return false;
+    }*/
+    
+
+    
+    
     LinkedList *StartNode=Head,*CoStartNode=P2;
     //FIXME: 指针释放有问题
     
@@ -128,18 +134,9 @@ bool IsPailnd(LinkedList *Head)
         {
             cout<<" the string is huiwen\n";
             //这里返回之前应该反向
-            LinkedList *p1=CurrentFast,*p2;
+            //LinkedList *p1=CurrentFast,*p2;
 
-            p2=p1->next;//建立p2
-            p1->next=NULL; //断开 指向NULL
-            while (p2->next!=NULL)
-            {
-                temp=p2->next;//保存
-                p2->next=p1;//反向
-                p1=p2;
-                p2=temp;
-            }
-            p2->next=p1;
+            ReverseList(CurrentFast);
             return true;
         }
         else
@@ -149,18 +146,9 @@ bool IsPailnd(LinkedList *Head)
         }
     }
     //指针反向 
-    LinkedList *p1=CurrentFast,*p2;
+    //LinkedList *p1=CurrentFast,*p2;
 
-    p2=p1->next;//建立p2
-    p1->next=NULL; //断开 指向NULL
-    while (p2->next!=NULL)
-    {
-        temp=p2->next;//保存
-        p2->next=p1;//反向
-        p1=p2;
-        p2=temp;
-    }
-    p2->next=p1;
+    ReverseList(CurrentFast);
        
     cout<<" the string is not huiwen\n";
     return false;
@@ -168,7 +156,7 @@ bool IsPailnd(LinkedList *Head)
 
 int main()
 {
-    string test("ll1lll");
+    string test("ll");
     LinkedList *Head=CreateList(test);
     ShowListData(Head);
     IsPailnd(Head);
