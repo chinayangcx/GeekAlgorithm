@@ -120,6 +120,7 @@ bool IsPailnd(LinkedList *Head)
     //P2为最后一个节点
     LinkedList *StartNode=Head,*CoStartNode=P2;
     //FIXME: 指针释放有问题
+    //TODO: //
     while ((StartNode->data)==(CoStartNode->data))
     {
         if (CoStartNode->next==NULL)
